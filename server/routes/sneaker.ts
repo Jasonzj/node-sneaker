@@ -1,0 +1,79 @@
+import { Context } from 'koa'
+import { Controller, get } from '../decorator/router'
+import config from '../config'
+import {
+  getProductPrice,
+  getSomeProduct,
+  getSearchtDetail,
+  getSuggestion,
+} from '../services/sneaker'
+
+@Controller(config.apiPrefix)
+export class SneaksRouter {
+  @get('/prices/:styleId')
+  async getPrices(ctx: Context): Promise<void> {
+    const { styleId } = ctx.params
+    const result = await getProductPrice(styleId)
+
+    ctx.body = {
+      success: true,
+      msg: 'Get Price Success ',
+      data: result,
+    }
+  }
+
+  @get('/suggestions/:siteName/:keyWord')
+  async getSearchRelevantStockx(ctx: Context): Promise<void> {
+    const { keyWord, siteName } = ctx.params
+    const result = await getSuggestion(keyWord, siteName)
+
+    ctx.body = {
+      success: true,
+      msg: `Get ${siteName} Suggestions Success`,
+      data: result,
+    }
+  }
+
+  @get('/search/:siteName/:keyWord')
+  async getSearchProduct(ctx: Context): Promise<void> {
+    const { keyWord, siteName } = ctx.params
+    const { result, isDBSearch } = await getSearchtDetail(keyWord, siteName)
+    const success = Boolean(result.length)
+
+    ctx.body = {
+      success,
+      msg: isDBSearch
+        ? `Get ${siteName} Search Product Fail, Return DB Data`
+        : `Get ${siteName} Search Product Success`,
+      data: result,
+      isDBSearch,
+    }
+  }
+
+  @get('/trending/:siteName')
+  async getTrendingGoat(ctx: Context): Promise<void> {
+    const { siteName } = ctx.params
+    const { result, isDBSearch } = await getSearchtDetail('', siteName)
+    const success = Boolean(result.length)
+
+    ctx.body = {
+      success,
+      msg: isDBSearch
+        ? `Get ${siteName} Trending Fail, Return Data DB`
+        : `Get ${siteName} Trending Success`,
+      data: result,
+      isDBSearch,
+    }
+  }
+
+  @get('/shoes')
+  async getSomeShoe(ctx: Context): Promise<void> {
+    const limit: number = parseInt(ctx.query.limit)
+    const result = await getSomeProduct(limit)
+
+    ctx.body = {
+      success: true,
+      data: result,
+    }
+  }
+}

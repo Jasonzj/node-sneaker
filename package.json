@@ -1,0 +1,70 @@
+{
+  "name": "node-sneaker",
+  "version": "1.0.0",
+  "description": "Provide A RESTful API for search and compare the price of sneakers",
+  "main": "app.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "server": "export NODE_ENV=production && node dist/app"
+  },
+  "keywords": [],
+  "author": "JasonZj",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "glob": "^7.1.6",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-jwt": "^4.0.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^10.0.0",
+    "koa2-cors": "^2.0.6",
+    "md5": "^2.3.0",
+    "mongoose": "^5.10.17",
+    "tunnel": "0.0.6"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/glob": "^7.1.3",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/koa": "^2.11.6",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-jwt": "^3.3.0",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.4.1",
+    "@types/koa2-cors": "^2.0.1",
+    "@types/mongoose": "^5.10.1",
+    "@types/node": "^14.14.10",
+    "@types/tunnel": "0.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "del": "^6.0.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.5.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.2",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "server/**/*.{jsx,tsx,ts,js,json}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
+}

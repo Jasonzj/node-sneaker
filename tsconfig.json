@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "rootDir": "./server",
+    "outDir": "./dist",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "experimentalDecorators": true
+  },
+  "include": ["./server/**/*"],
+  "exclude": [""]
+}
