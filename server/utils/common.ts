@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios'
 import proxy_axios from './proxy_axios'
 import sign from './sign'
-import { AnyObjectType, ExchangeRateType } from './type'
+import { ExchangeRateType } from './type'
 
 /**
  *  错误log
@@ -56,10 +56,10 @@ export const parallelAwait = (...args: Promise<any>[]) => {
 /**
  * 是否为空对象
  *
- * @param {(AnyObjectType | undefined)} o
+ * @param {(Record<string, unknown> | undefined)} o
  * @returns {boolean}
  */
-export const isEmptyObject = (o: AnyObjectType | undefined): boolean => {
+export const isEmptyObject = (o: Record<string, unknown> | undefined): boolean => {
   if (o === undefined) return true
   return Object.keys(o).length === 0
 }

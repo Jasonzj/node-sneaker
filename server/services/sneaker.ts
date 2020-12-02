@@ -14,7 +14,6 @@ import {
 } from '../helpers/sneaker-data'
 import {
   DewuSizePriceListType,
-  AnyStringObjectType,
   SearchDetailListType,
   SearchResultType,
   SiteNameType,
@@ -122,8 +121,8 @@ export const getProductPrice = async (styleId: string) => {
   )
 
   const dewuPrices: DewuSizePriceListType = result[0]
-  const stockxPrices: AnyStringObjectType = result[1]
-  const goatPrices: AnyStringObjectType = result[2]
+  const stockxPrices: Record<string, number> = result[1]
+  const goatPrices: Record<string, number> = result[2]
   const dewuSizeLists = dewuPrices.sizeLists
   delete dewuPrices.sizeLists
 

@@ -195,7 +195,7 @@ type DewuInfoType = {
 }
 
 type DewuSizePriceListType = {
-  sizeLists: AnyStringObjectType
+  sizeLists: Record<string, number>
   images: string[]
   baseProperties: Record<string, string>[]
   sizeImage: string
@@ -497,12 +497,12 @@ type StockxSearchSuggestionType = {
   nbPages: number
   hitsPerPage: number
   facets: {
-    lowest_ask: AnyStringObjectType
-    quality_bid: AnyStringObjectType
-    'media.imageUrl': AnyStringObjectType
-    buying_countries: AnyStringObjectType
-    product_category: AnyStringObjectType
-    selling_countries: AnyStringObjectType
+    lowest_ask: Record<string, number>
+    quality_bid: Record<string, number>
+    'media.imageUrl': Record<string, number>
+    buying_countries: Record<string, number>
+    product_category: Record<string, number>
+    selling_countries: Record<string, number>
   }
   facets_stats: {
     lowest_ask: { min: number; max: number; avg: number; sum: number }
@@ -531,7 +531,7 @@ type StockxSearchDetailType = {
     id: string
     uuid: string
     brand: string
-    breadcrumbs: any[]
+    breadcrumbs: []
     category: string
     charityCondition: number
     childId: null
@@ -544,12 +544,12 @@ type StockxSearchDetailType = {
     listingType: string
     minimumBid: number
     gender: string
-    doppelgangers: any[]
+    doppelgangers: []
     media: {
       imageUrl: string
       smallImageUrl: string
       thumbUrl: string
-      gallery: any[]
+      gallery: []
       hidden: boolean
     }
     name: string
@@ -719,9 +719,9 @@ interface SearchDetailType {
   baseProperties?: Record<string, string>[]
   time?: number
   sizePrices?: {
-    dewu?: AnyStringObjectType
-    stockx?: AnyStringObjectType
-    goat?: AnyStringObjectType
+    dewu?: Record<string, number>
+    stockx?: Record<string, number>
+    goat?: Record<string, number>
   }
 }
 
@@ -739,14 +739,6 @@ type UserInfoType = {
   password: string
   following: string[]
   meta: { createdAt: number; updatedAt: number }
-}
-
-type AnyStringObjectType = {
-  [propname: string]: number
-}
-
-type AnyObjectType = {
-  [propname: string]: unknown
 }
 
 type RouterCallbackType = (ctx: Context) => Promise<void>
@@ -769,7 +761,6 @@ export {
   StockxSearchDetailType,
   StockxSearchSuggestionType,
   SearchDetailType,
-  AnyStringObjectType,
   routerMap,
   DewuSkusType,
   DewuInfoType,
@@ -778,7 +769,6 @@ export {
   SiteNameType,
   SearchDetailListType,
   UserInfoType,
-  AnyObjectType,
   RouterCallbackType,
   ExchangeRateType,
 }

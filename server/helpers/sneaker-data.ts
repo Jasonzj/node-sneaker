@@ -4,7 +4,6 @@ import { stockx_getProductPrice } from '../scrapers/stock'
 import { goat_getProductPrice } from '../scrapers/goat'
 import { getExchangeRate, formatSize, isEmptyObject, parallelAwait } from '../utils/common'
 import {
-  AnyStringObjectType,
   DewuInfoType,
   DewuSkusType,
   DewuSizePriceListType,
@@ -21,14 +20,14 @@ import {
  * 获取Stockx指定urlKey的鞋的所有尺码价格列表
  *
  * @param {string} [urlKey='']  stockx鞋唯一key
- * @returns {Promise<AnyStringObjectType>}
+ * @returns {Promise<Record<string, number>>}
  * sizeLists{
  *  '5.5': 100,
  *  '6': 120
  * }
  */
-export const getStockxPrices = async (urlKey = ''): Promise<AnyStringObjectType> => {
-  const sizeLists: AnyStringObjectType = {}
+export const getStockxPrices = async (urlKey = ''): Promise<Record<string, number>> => {
+  const sizeLists: Record<string, number> = {}
   const stockxPrices: StockxPriceType = await stockx_getProductPrice(urlKey)
 
   if (!stockxPrices) return sizeLists // 请求stockx价格失败直接返回{}
@@ -77,8 +76,8 @@ export const getDewuPrices = async (spuId = 0): Promise<DewuSizePriceListType> =
   const skus: DewuSkusType[] = info.skus
   const saleProperties = info.saleProperties.list
 
-  const skuIdPrice: AnyStringObjectType = {}
-  const propertyValueIdPrice: AnyStringObjectType = {}
+  const skuIdPrice: Record<string, number> = {}
+  const propertyValueIdPrice: Record<string, number> = {}
 
   prices.skuInfoList.forEach((item) => {
     skuIdPrice[item.skuId] = item.minPrice / 100
@@ -94,7 +93,7 @@ export const getDewuPrices = async (spuId = 0): Promise<DewuSizePriceListType> =
     }
   })
 
-  const sizeLists: AnyStringObjectType = {}
+  const sizeLists: Record<string, number> = {}
   const rate = await getExchangeRate()
 
   saleProperties.forEach((item) => {
@@ -130,14 +129,14 @@ export const getDewuPrices = async (spuId = 0): Promise<DewuSizePriceListType> =
  * 获取Goat指定spuId的鞋的所有尺码价格列表
  *
  * @param {string} [slug=''] Goat鞋唯一slug
- * @returns {Promise<AnyStringObjectType>}
+ * @returns {Promise<Record<string, number>>}
  * sizeLists{
  *  '5.5': 100,
  *  '6': 120
  * }
  */
-export const getGoatPrices = async (slug = ''): Promise<AnyStringObjectType> => {
-  const sizeLists: AnyStringObjectType = {}
+export const getGoatPrices = async (slug = ''): Promise<Record<string, number>> => {
+  const sizeLists: Record<string, number> = {}
   const goatPrices: GoatPricesType = await goat_getProductPrice(slug) // 请求goat价格失败直接返回{}
 
   if (!goatPrices) return sizeLists
