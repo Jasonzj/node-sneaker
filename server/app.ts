@@ -1,5 +1,5 @@
 import * as Koa from 'koa'
-import * as jwtKoa from 'koa-jwt'
+// import * as jwtKoa from 'koa-jwt'
 import * as logger from 'koa-logger'
 import * as bodyParser from 'koa-bodyparser'
 import router from './middlewares/router'
@@ -18,11 +18,11 @@ app.use(cors())
 app.use(logger())
 app.use(errorHandler())
 app.use(bodyParser())
-app.use(
-  jwtKoa({ secret: config.JWT_SECRET }).unless({
-    path: [/\/register/, /\/login/, /\/users/],
-  }),
-)
+// app.use(
+//   jwtKoa({ secret: config.JWT_SECRET }).unless({
+//     path: [/\/register/, /\/login/, /\/users/],
+//   }),
+// )
 
 // 装载所有子路由
 router(app)

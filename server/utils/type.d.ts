@@ -1,4 +1,4 @@
-import { Context } from 'koa'
+import { Middleware } from 'koa'
 
 type ExchangeRateType = {
   result: string
@@ -741,13 +741,11 @@ type UserInfoType = {
   meta: { createdAt: number; updatedAt: number }
 }
 
-type RouterCallbackType = (ctx: Context) => Promise<void>
-
 type routerMap = {
   path: string
   method: string
   target: ClassDecorator
-  callback: RouterCallbackType[]
+  callback: Middleware[]
 }
 
 export {
@@ -769,6 +767,5 @@ export {
   SiteNameType,
   SearchDetailListType,
   UserInfoType,
-  RouterCallbackType,
   ExchangeRateType,
 }

@@ -1,13 +1,15 @@
 import * as Router from 'koa-router'
 import * as glob from 'glob'
 import * as Koa from 'koa'
+import * as jwtKoa from 'koa-jwt'
 import { resolve } from 'path'
-import { RouterCallbackType, routerMap } from '../utils/type'
+import { routerMap } from '../utils/type'
+import config from '../config'
 
 const pathPrefix = Symbol('prefix') // 路径前缀
 const routerMap: routerMap[] = []
 
-const changeToArr = (arr: [] | RouterCallbackType): RouterCallbackType[] =>
+const changeToArr = (arr: [] | Koa.Middleware): Koa.Middleware[] =>
   Array.isArray(arr) ? arr : [arr]
 const normalizePath = (path: string): string => (path.startsWith('/') ? path : `/${path}`)
 
@@ -36,22 +38,32 @@ export class Route {
   }
 }
 
-// export const convert = (middleware: Function) => (target: any, key: string): void => {
-//   target[key] = [middleware, ...changeToArr(target[key])]
-// }
+export const convert = (middleware: Koa.Middleware) => (target: any, key: string): void => {
+  target[key] = [middleware, ...changeToArr(target[key])]
+}
 
-export const setRouter = (method: string) => (path: string) => (target: any, key: string): void => {
+export const setRouter = (method: string) => (path: string) => (
+  target: any,
+  key: string,
+  descriptor: PropertyDescriptor,
+): PropertyDescriptor => {
   routerMap.push({
     target,
     method,
     path: normalizePath(path),
     callback: changeToArr(target[key]),
   })
+  return descriptor
 }
 
-export const Controller = (path: any) => (target) => (target.prototype[pathPrefix] = path)
+export const Controller = (path: string): ClassDecorator => (constructor) => {
+  constructor.prototype[pathPrefix] = path
+}
+
 export const get = setRouter('get')
 export const post = setRouter('post')
 export const put = setRouter('put')
 export const patch = setRouter('patch')
 export const del = setRouter('delete')
+
+export const Auth = convert(jwtKoa({ secret: config.JWT_SECRET }))
