@@ -1,5 +1,5 @@
 import { Context } from 'koa'
-import { Controller, post, get, put, del } from '../decorator/router'
+import { Controller, Auth, Post, Get, Put, Delete } from '../decorator/router'
 import {
   follow,
   createUser,
@@ -13,7 +13,7 @@ import config from '../config'
 
 @Controller(`${config.apiPrefix}`)
 export class UserRouter {
-  @post('/login')
+  @Post('/login')
   async login(ctx: Context): Promise<void> {
     const result = await login(ctx)
 
@@ -24,7 +24,7 @@ export class UserRouter {
     }
   }
 
-  @post('/register')
+  @Post('/register')
   async register(ctx: Context): Promise<void> {
     const result = await createUser(ctx)
 
@@ -37,7 +37,8 @@ export class UserRouter {
     }
   }
 
-  @get('/user')
+  @Get('/user')
+  @Auth
   async getUserInfo(ctx: Context): Promise<void> {
     const result = await getUserInfo(ctx)
 
@@ -48,7 +49,8 @@ export class UserRouter {
     }
   }
 
-  @put('/user/password')
+  @Put('/user/password')
+  @Auth
   async updateUserPassword(ctx: Context): Promise<void> {
     const result = await updatePassword(ctx)
 
@@ -59,7 +61,8 @@ export class UserRouter {
     }
   }
 
-  @get('/user/following')
+  @Get('/user/following')
+  @Auth
   async getUserFollowing(ctx: Context): Promise<void> {
     const result = await getFollowing(ctx)
 
@@ -70,12 +73,14 @@ export class UserRouter {
     }
   }
 
-  @put('/user/following')
+  @Put('/user/following')
+  @Auth
   async addUserFollowing(ctx: Context): Promise<void> {
     await follow(ctx)
   }
 
-  @del('/user/following')
+  @Delete('/user/following')
+  @Auth
   async deleteUserFollowing(ctx: Context): Promise<void> {
     await unfollow(ctx)
   }

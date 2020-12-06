@@ -1,5 +1,5 @@
 import { Context } from 'koa'
-import { Controller, get } from '../decorator/router'
+import { Controller, Auth, Get } from '../decorator/router'
 import config from '../config'
 import {
   getProductPrice,
@@ -10,7 +10,8 @@ import {
 
 @Controller(config.apiPrefix)
 export class SneaksRouter {
-  @get('/prices/:styleId')
+  @Get('/prices/:styleId')
+  @Auth
   async getPrices(ctx: Context): Promise<void> {
     const { styleId } = ctx.params
     const result = await getProductPrice(styleId)
@@ -22,7 +23,8 @@ export class SneaksRouter {
     }
   }
 
-  @get('/suggestions/:siteName/:keyWord')
+  @Get('/suggestions/:siteName/:keyWord')
+  @Auth
   async getSearchRelevantStockx(ctx: Context): Promise<void> {
     const { keyWord, siteName } = ctx.params
     const result = await getSuggestion(keyWord, siteName)
@@ -34,7 +36,8 @@ export class SneaksRouter {
     }
   }
 
-  @get('/search/:siteName/:keyWord')
+  @Get('/search/:siteName/:keyWord')
+  @Auth
   async getSearchProduct(ctx: Context): Promise<void> {
     const { keyWord, siteName } = ctx.params
     const { result, isDBSearch } = await getSearchtDetail(keyWord, siteName)
@@ -50,7 +53,8 @@ export class SneaksRouter {
     }
   }
 
-  @get('/trending/:siteName')
+  @Get('/trending/:siteName')
+  @Auth
   async getTrendingGoat(ctx: Context): Promise<void> {
     const { siteName } = ctx.params
     const { result, isDBSearch } = await getSearchtDetail('', siteName)
@@ -66,7 +70,8 @@ export class SneaksRouter {
     }
   }
 
-  @get('/shoes')
+  @Get('/shoes')
+  @Auth
   async getSomeShoe(ctx: Context): Promise<void> {
     const limit: number = parseInt(ctx.query.limit)
     const result = await getSomeProduct(limit)

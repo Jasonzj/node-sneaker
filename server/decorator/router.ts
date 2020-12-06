@@ -60,10 +60,10 @@ export const Controller = (path: string): ClassDecorator => (constructor) => {
   constructor.prototype[pathPrefix] = path
 }
 
-export const get = setRouter('get')
-export const post = setRouter('post')
-export const put = setRouter('put')
-export const patch = setRouter('patch')
-export const del = setRouter('delete')
+export const Get = setRouter('get')
+export const Post = setRouter('post')
+export const Put = setRouter('put')
+export const Patch = setRouter('patch')
+export const Delete = setRouter('delete')
 
 export const Auth = convert(jwtKoa({ secret: config.JWT_SECRET }))

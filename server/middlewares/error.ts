@@ -22,7 +22,7 @@ const errorHandler = () => async (ctx: Context, next: Next) => {
       obj.msg = err.message
       obj.err = err
     }
-    ctx.status = err.statusCode || err.status || (err.response && err.response.status) || 500
+    ctx.status = err.statusCode || err.status || err.response?.status || 500
     ctx.body = obj
   }
 }
