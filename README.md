@@ -13,9 +13,69 @@
 - Axios
 - Gulp
 - MongoDB
+## 安装
+```shell
+$ git clone https://github.com/Jasonzj/sneaker.git
 
-## 前端截图
+$ yarn
+```
+## 配置文件&环境变量
+项目配置文件位于server/config/env
+
+### 环境变量说明
+
+| 变量名 | 说明 |
+| --- | --- |
+| PORT | 端口号 |
+| API_PREFIX | API前缀 |
+| SEARCH_PAGE_LIMIT | 搜索数量限制 |
+| CONCURRENT_LIMIT | 爬虫并发限制 |
+| DEWU_PAGE_LIMIT | DEWU搜索接口数量响指 |
+| DEWU_CONCURRENT_LIMIT | DEWU搜索接口并发限制 |
+| REQUIRE_TIMEOUT | 请求超时时间/秒 |
+| PROXY_PORT | 代理端口，设置后开启代理 |
+
+### 隐私环境变量说明
+
+| 变量名 | 说明 |
+| --- | --- |
+| MONGODB_LINK | mongodb连接地址 |
+| JWT_SECRET | jwt加密 |
+| SALT_WORK_FACTOR | 密码加盐系数 |
+
+新建variables.env, 该文件用来存放隐私环境变量
+### variables.env demo
+```shell
+MONGODB_LINK=mongodb://localhost
+JWT_SECRET=jwtsecret
+SALT_WORK_FACTOR=9
+```
+
+## 运行
+```shell
+$ yarn start
+```
+
+## Docker容器运行
+先创建~/data/db 用于存放mongodb数据库文件
+
+再创建一个目录node-sneaker用于存放docker-compose配置和隐私环境变量
+```shell
+node-sneaker
+├── variables.env
+└── docker-compose.yml
+```
+### 启动
+```shell
+$ cd node-sneaker
+$ docker-compose up -d #修改docker-compose.yml后需要使用此命令使更改生效
+```
+
+
+## 前端
 
 [sneaker](https://github.com/Jasonzj/sneaker)
+
+[在线地址](http://www.sneakerapp.tk/)
 
 <img src="https://github.com/Jasonzj/sneaker/blob/main/screenshots/demo.gif" width=800 align=left>
