@@ -13,7 +13,9 @@ services:
     image: jasonzza/node-sneaker
     restart: always
     environment:
-      - NODE_ENV: production
+      - NODE_ENV=production
+    volumes:
+      - ./variables.env:/app/variables.env
     depends_on:
       - database
     ports:
