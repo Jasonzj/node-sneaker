@@ -5,12 +5,12 @@ import config from '../config'
 const tunnelingAgent = tunnel.httpsOverHttp({
   proxy: {
     host: '127.0.0.1',
-    port: config.proxy_port,
+    port: config.PROXY_PORT,
   },
 })
 
 const proxyAxios = () => {
-  if (!config.proxy) return axios
+  if (!config.PROXY_PORT) return axios
   return axios.create({
     proxy: false,
     httpsAgent: tunnelingAgent,

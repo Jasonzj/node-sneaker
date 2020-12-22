@@ -23,14 +23,14 @@ const Environment: config = env
 export default Environment
 
 type config = {
-  port: number
-  apiPrefix: string
-  searchPageLimit: number
-  concurrentLimit: number
-  dewuPageLimit: number
-  dewuConcurrentLimit: number
-  proxy?: boolean
-  proxy_port?: number
+  PORT: number
+  API_PREFIX: string
+  SEARCH_PAGE_LIMIT: number
+  CONCURRENT_LIMIT: number
+  DEWU_PAGE_LIMIT: number
+  DEWU_CONCURRENT_LIMIT: number
+  REQUIRE_TIMEOUT: number
+  PROXY_PORT?: number
   MONGODB_LINK?: string
   JWT_SECRET?: string
   SALT_WORK_FACTOR?: string

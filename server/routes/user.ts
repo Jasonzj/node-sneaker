@@ -11,7 +11,7 @@ import {
 } from '../services/user'
 import config from '../config'
 
-@Controller(`${config.apiPrefix}`)
+@Controller(`${config.API_PREFIX}`)
 export class UserRouter {
   @Post('/login')
   async login(ctx: Context): Promise<void> {

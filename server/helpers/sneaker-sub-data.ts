@@ -68,7 +68,7 @@ const childDetailFunMap = {
 const childDetailHandle = async (products: SearchDetailListType, sitename: string) => {
   const rate = await getExchangeRate()
   const funs = childDetailFunMap[sitename] //根据sitename获取child数据处理函数
-  const limit = sitename === 'dewu' ? config.dewuPageLimit : config.concurrentLimit
+  const limit = sitename === 'dewu' ? config.DEWU_PAGE_LIMIT : config.CONCURRENT_LIMIT
 
   const loadChildDetail = async (shoe: SearchDetailType) => {
     const styleId = shoe.styleID

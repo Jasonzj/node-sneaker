@@ -21,15 +21,8 @@ app.use(bodyParser())
 // 装载所有子路由
 router(app)
 
-// 处理 404
-app.use(async (ctx: Koa.Context) => {
-  console.error(`404 ${ctx.message} : ${ctx.href}`)
-  ctx.status = 404
-  ctx.body = '404! content not found !'
+const server = app.listen(config.PORT, () => {
+  console.log(`server start --> ${config.PORT}`)
+  if (config.PROXY_PORT) console.log(`proxy start --> ${config.PROXY_PORT}`)
 })
-
-const server = app.listen(config.port, () => {
-  console.log(`server start --> ${config.port}`)
-  if (config.proxy) console.log(`proxy start --> ${config.proxy_port}`)
-})
-server.setTimeout(30 * 1000)
+server.setTimeout(config.REQUIRE_TIMEOUT * 1000)

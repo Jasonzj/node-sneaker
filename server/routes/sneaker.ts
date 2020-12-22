@@ -8,7 +8,7 @@ import {
   getSuggestion,
 } from '../services/sneaker'
 
-@Controller(config.apiPrefix)
+@Controller(config.API_PREFIX)
 export class SneaksRouter {
   @Get('/prices/:styleId')
   @Auth

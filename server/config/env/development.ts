@@ -1,10 +1,10 @@
 export default {
-  port: 4455,
-  apiPrefix: 'api/v1',
-  searchPageLimit: 5,
-  concurrentLimit: 2,
-  dewuPageLimit: 20,
-  dewuConcurrentLimit: 20,
-  proxy: true,
-  proxy_port: 7890,
+  PORT: 4455,
+  API_PREFIX: 'api/v1',
+  SEARCH_PAGE_LIMIT: 5,
+  CONCURRENT_LIMIT: 2,
+  DEWU_PAGE_LIMIT: 20,
+  DEWU_CONCURRENT_LIMIT: 20,
+  REQUIRE_TIMEOUT: 60,
+  PROXY_PORT: 7890,
 }

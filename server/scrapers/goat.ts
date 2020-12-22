@@ -15,7 +15,7 @@ export const goat_searchProduct = async (key: string): Promise<GoatSearchDetailT
     const response = await proxy_axios.post<GoatSearchDetailType>(
       'https://2fwotdvm2o-2.algolianet.com/1/indexes/product_variants_v2/query?x-algolia-agent=Algolia%20for%20vanilla%20JavaScript%203.25.1&x-algolia-application-id=2FWOTDVM2O&x-algolia-api-key=ac96de6fef0e02bb95d433d8d5c7038a',
       {
-        params: `distinct=true&facetFilters=(product_category%3A%20shoes)%2C%20()&facets=%5B%22size%22%5D&hitsPerPage=${config.searchPageLimit}&numericFilters=%5B%5D&page=0&query=${key}&clickAnalytics=true`,
+        params: `distinct=true&facetFilters=(product_category%3A%20shoes)%2C%20()&facets=%5B%22size%22%5D&hitsPerPage=${config.SEARCH_PAGE_LIMIT}&numericFilters=%5B%5D&page=0&query=${key}&clickAnalytics=true`,
       },
       {
         headers: goatHeader,
@@ -44,7 +44,7 @@ export const goat_getTrendingProduct = async (): Promise<GoatSearchDetailType> =
         requests: [
           {
             indexName: 'product_variants_v2_by_collection_order_asc',
-            params: `highlightPreTag=<ais-highlight-0000000000>&highlightPostTag=</ais-highlight-0000000000>&distinct=true&filters=collection.slug:trending&maxValuesPerFacet=30&page=0&query=&facets=*&tagFilters=&hitsPerPage=${config.searchPageLimit}`,
+            params: `highlightPreTag=<ais-highlight-0000000000>&highlightPostTag=</ais-highlight-0000000000>&distinct=true&filters=collection.slug:trending&maxValuesPerFacet=30&page=0&query=&facets=*&tagFilters=&hitsPerPage=${config.SEARCH_PAGE_LIMIT}`,
           },
         ],
       },
