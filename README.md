@@ -16,7 +16,6 @@
 ## 安装
 ```shell
 $ git clone https://github.com/Jasonzj/sneaker.git
-
 $ yarn
 ```
 ## 配置文件&环境变量
@@ -30,7 +29,7 @@ $ yarn
 | API_PREFIX | API前缀 |
 | SEARCH_PAGE_LIMIT | 搜索数量限制 |
 | CONCURRENT_LIMIT | 爬虫并发限制 |
-| DEWU_PAGE_LIMIT | DEWU搜索接口数量响指 |
+| DEWU_PAGE_LIMIT | DEWU搜索接口数量限制 |
 | DEWU_CONCURRENT_LIMIT | DEWU搜索接口并发限制 |
 | REQUIRE_TIMEOUT | 请求超时时间/秒 |
 | PROXY_PORT | 代理端口，设置后开启代理 |
@@ -74,8 +73,6 @@ $ docker-compose up -d #修改docker-compose.yml后需要使用此命令使更�
 
 ## 前端
 
-[sneaker](https://github.com/Jasonzj/sneaker)
-
-[在线地址](http://www.sneakerapp.tk/)
+[GitHub](https://github.com/Jasonzj/sneaker) | [在线地址](http://www.sneakerapp.tk/)
 
 <img src="https://github.com/Jasonzj/sneaker/blob/main/screenshots/demo.gif" width=800 align=left>
