@@ -6,8 +6,7 @@ import { Context, Next } from 'koa'
 type ResData = {
   success: boolean
   msg?: string
-  data?: any
-  err?: any
+  err?: Record<string, any>
 }
 
 const errorHandler = () => async (ctx: Context, next: Next) => {
@@ -16,12 +15,11 @@ const errorHandler = () => async (ctx: Context, next: Next) => {
   } catch (err) {
     const obj: ResData = {
       success: false,
-      msg: 'System Error',
+      msg: err.message || 'System Error',
     }
-    if (ctx.app.env === 'development') {
-      obj.msg = err.message
-      obj.err = err
-    }
+
+    if (ctx.app.env === 'development') obj.err = err
+
     ctx.status = err.statusCode || err.status || err.response?.status || 500
     ctx.body = obj
   }
