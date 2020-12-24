@@ -38,7 +38,7 @@ $ yarn
 
 | 变量名 | 说明 |
 | --- | --- |
-| MONGODB_LINK | mongodb连接地址, 使用docker-compose方式的话连接地址为services name(指定service name会自动创建network alias) |
+| MONGODB_LINK | mongodb连接地址, 使用docker-compose方式的话连接地址为service name(指定service name会自动创建network alias) |
 | JWT_SECRET | jwt加密 |
 | SALT_WORK_FACTOR | 密码加盐系数 |
 
