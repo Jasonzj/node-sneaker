@@ -38,14 +38,14 @@ $ yarn
 
 | 变量名 | 说明 |
 | --- | --- |
-| MONGODB_LINK | mongodb连接地址 |
+| MONGODB_LINK | mongodb连接地址, 使用docker-compose方式的话连接地址为services name(指定service name会自动创建network alias) |
 | JWT_SECRET | jwt加密 |
 | SALT_WORK_FACTOR | 密码加盐系数 |
 
 新建variables.env, 该文件用来存放隐私环境变量
 ### variables.env demo
 ```shell
-MONGODB_LINK=mongodb://localhost
+MONGODB_LINK=mongodb://localhost:XX  #使用docker-compose方式: mongodb://database(这里填service name):XX
 JWT_SECRET=jwtsecret
 SALT_WORK_FACTOR=9
 ```
@@ -56,7 +56,7 @@ $ yarn start
 ```
 
 ## Docker容器运行
-先创建~/data/db 用于存放mongodb数据库文件
+先创建~/data/db 用于存放mongodb数据库文件, 用于持久化数据(使用Bind Mounts方式)
 
 再创建一个目录node-sneaker用于存放docker-compose配置和隐私环境变量
 ```shell
