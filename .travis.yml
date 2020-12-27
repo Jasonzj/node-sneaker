@@ -13,7 +13,7 @@ before_install:
   - chmod 600 ~/.ssh/id_rsa
 
 script:
-  - docker build -t jasonzza/sneaker:latest -f Dockerfile .
+  - docker build -t jasonzza/node-sneaker:latest -f Dockerfile .
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
