@@ -17,7 +17,7 @@ script:
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push jasonzza/sneaker:latest
+  - docker push jasonzza/node-sneaker:latest
   - scp -o "StrictHostKeyChecking no" docker-compose.yml $USER@$HOST_IP:$PUBLISH_PATH
   - ssh -o "StrictHostKeyChecking no" $USER@$HOST_IP "cd $PUBLISH_PATH;docker-compose
     down;docker-compose pull;docker-compose up -d;exit"
