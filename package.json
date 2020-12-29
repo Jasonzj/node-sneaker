@@ -6,7 +6,10 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "server": "export NODE_ENV=production && node dist/app"
+    "server": "export NODE_ENV=production && node dist/app",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:types": "tsc --project ./tsconfig.json --noEmit"
   },
   "keywords": [],
   "author": "JasonZj",
@@ -59,13 +62,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn lint:types && lint-staged"
     }
   },
   "lint-staged": {
     "server/**/*.{jsx,tsx,ts,js,json}": [
       "prettier --write",
-      "eslint --fix"
+      "yarn lint:fix"
     ]
   },
   "config": {
