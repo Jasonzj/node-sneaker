@@ -3060,6 +3060,13 @@ koa-logger@^3.2.1:
     humanize-number "0.0.2"
     passthrough-counter "^1.0.0"
 
+koa-parameter@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npm.taobao.org/koa-parameter/download/koa-parameter-3.0.1.tgz#b0645f2412eadb79d3a1808d17ed30824a54c887"
+  integrity sha1-sGRfJBLq23nToYCNF+0wgkpUyIc=
+  dependencies:
+    parameter "^2.2.0"
+
 koa-router@^10.0.0:
   version "10.0.0"
   resolved "https://registry.npm.taobao.org/koa-router/download/koa-router-10.0.0.tgz?cache=0&sync_timestamp=1604325708970&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkoa-router%2Fdownload%2Fkoa-router-10.0.0.tgz#7bc76a031085731e61fc92c1683687b2f44de6a4"
@@ -3951,6 +3958,11 @@ package-json@^6.3.0:
     registry-auth-token "^4.0.0"
     registry-url "^5.0.0"
     semver "^6.2.0"
+
+parameter@^2.2.0:
+  version "2.4.0"
+  resolved "https://registry.npm.taobao.org/parameter/download/parameter-2.4.0.tgz#85ea52e9dfee80265a07b086edbc352e68b39733"
+  integrity sha1-hepS6d/ugCZaB7CG7bw1LmizlzM=
 
 parent-module@^1.0.0:
   version "1.0.1"

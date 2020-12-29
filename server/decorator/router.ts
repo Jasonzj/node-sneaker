@@ -67,3 +67,8 @@ export const Patch = setRouter('patch')
 export const Delete = setRouter('delete')
 
 export const Auth = convert(jwtKoa({ secret: config.JWT_SECRET }))
+export const VerifyParams = (rules: Record<string, any>) =>
+  convert(async (ctx, next) => {
+    ctx.verifyParams(rules)
+    await next()
+  })
