@@ -21,6 +21,7 @@
     "koa-bodyparser": "^4.3.0",
     "koa-jwt": "^4.0.0",
     "koa-logger": "^3.2.1",
+    "koa-parameter": "^3.0.1",
     "koa-router": "^10.0.0",
     "koa2-cors": "^2.0.6",
     "md5": "^2.3.0",

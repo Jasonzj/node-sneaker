@@ -5,6 +5,7 @@ import router from './middlewares/router'
 import errorHandler from './middlewares/error'
 import { dbconnect } from './middlewares/database'
 import cors = require('koa2-cors')
+import parameter = require('koa-parameter')
 import config from './config'
 
 const app: Koa = new Koa()
@@ -17,6 +18,7 @@ app.use(cors())
 app.use(logger())
 app.use(errorHandler())
 app.use(bodyParser())
+parameter(app)
 
 // 装载所有子路由
 router(app)
