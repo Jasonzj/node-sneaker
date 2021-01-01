@@ -2,7 +2,7 @@ import Sneaker from '../Dao/models/sneaker'
 import { stockx_getSuggestion, stockx_searchProduct } from '../scrapers/stock'
 import { goat_getTrendingProduct, goat_searchProduct } from '../scrapers/goat'
 import { dewu_getSuggestion, dewu_getTrendingProduct, dewu_searchProduct } from '../scrapers/dewu'
-import { isEmptyObject, parallelAwait } from '../utils/common'
+import { isEmptyObject } from '../utils/common'
 import { dbSearch, getSearchtDetailDb, SneakerUpdate, dbSearchByStyleId } from '../Dao/sneaker'
 import {
   getGoatPrices,
@@ -13,7 +13,6 @@ import {
   dewuSearchDataHandle,
 } from '../helpers/sneaker-data'
 import {
-  DewuSizePriceListType,
   SearchDetailListType,
   SearchResultType,
   SiteNameType,
@@ -114,15 +113,12 @@ export const getSuggestion = async (keyWord: string, siteName: SiteNameType) => 
 export const getProductPrice = async (styleId: string) => {
   const shoe = await dbSearchByStyleId(styleId)
 
-  const result = await parallelAwait(
+  const [dewuPrices, stockxPrices, goatPrices] = await Promise.all([
     getDewuPrices(shoe.spuId),
     getStockxPrices(shoe.urlKey),
     getGoatPrices(shoe.slug),
-  )
+  ])
 
-  const dewuPrices: DewuSizePriceListType = result[0]
-  const stockxPrices: Record<string, number> = result[1]
-  const goatPrices: Record<string, number> = result[2]
   const dewuSizeLists = dewuPrices.sizeLists
   delete dewuPrices.sizeLists
 

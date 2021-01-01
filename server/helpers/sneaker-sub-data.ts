@@ -2,7 +2,7 @@ import config from '../config'
 import { dewu_searchProduct } from '../scrapers/dewu'
 import { goat_searchProduct } from '../scrapers/goat'
 import { stockx_searchProduct } from '../scrapers/stock'
-import { getExchangeRate, parallelAwait, asyncLimit } from '../utils/common'
+import { getExchangeRate, asyncLimit } from '../utils/common'
 import {
   SearchDetailType,
   SearchDetailListType,
@@ -72,11 +72,12 @@ const childDetailHandle = async (products: SearchDetailListType, sitename: strin
 
   const loadChildDetail = async (shoe: SearchDetailType) => {
     const styleId = shoe.styleID
-    const results = await parallelAwait(funs[0](styleId), funs[1](styleId))
+    const [searchFn1, searchFn2, handleFn1, handleFn2] = funs
+    const results = await Promise.all([searchFn1(styleId), searchFn2(styleId)])
     const siteResult1: GoatSearchDetailType | StockxSearchDetailType = results[0]
     const siteResult2: DewuSearchDetailType | StockxSearchDetailType = results[1]
-    funs[2](shoe, siteResult1)
-    funs[3](shoe, siteResult2, rate)
+    handleFn1(shoe, siteResult1)
+    handleFn2(shoe, siteResult2, rate)
 
     return
   }

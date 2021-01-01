@@ -2,15 +2,13 @@ import childDetailHandle from './sneaker-sub-data'
 import { dewu_getProductInfo, dewu_getProductPrice } from '../scrapers/dewu'
 import { stockx_getProductPrice } from '../scrapers/stock'
 import { goat_getProductPrice } from '../scrapers/goat'
-import { getExchangeRate, formatSize, isEmptyObject, parallelAwait } from '../utils/common'
+import { getExchangeRate, formatSize, isEmptyObject } from '../utils/common'
 import {
-  DewuInfoType,
   DewuSkusType,
   DewuSizePriceListType,
   GoatSearchDetailType,
   StockxSearchDetailType,
   SearchDetailListType,
-  DewuPriceType,
   GoatPricesType,
   StockxPriceType,
   DewuSearchDetailType,
@@ -59,9 +57,10 @@ export const getStockxPrices = async (urlKey = ''): Promise<Record<string, numbe
  * }
  */
 export const getDewuPrices = async (spuId = 0): Promise<DewuSizePriceListType> => {
-  const result = await parallelAwait(dewu_getProductInfo(spuId), dewu_getProductPrice(spuId))
-  const info: DewuInfoType = result[0] || {}
-  const prices: DewuPriceType = result[1] || {}
+  const [info, prices] = await Promise.all([
+    dewu_getProductInfo(spuId),
+    dewu_getProductPrice(spuId),
+  ])
 
   if (isEmptyObject(info) || isEmptyObject(prices)) {
     return {

@@ -44,23 +44,13 @@ export const getDewuQueryStr = (query: {
 }
 
 /**
- * 将多个Promise合成Promise.all
- *
- * @param {...Promise<any>[]} args
- * @returns
- */
-export const parallelAwait = (...args: Promise<any>[]) => {
-  return Promise.all(args)
-}
-
-/**
  * 是否为空对象
  *
  * @param {(Record<string, unknown> | undefined)} o
  * @returns {boolean}
  */
-export const isEmptyObject = (o: Record<string, unknown> | undefined): boolean => {
-  if (o === undefined) return true
+export const isEmptyObject = (o: Record<string, unknown> | undefined | null): boolean => {
+  if (!o) return true
   return Object.keys(o).length === 0
 }
 
