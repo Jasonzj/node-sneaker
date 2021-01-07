@@ -732,22 +732,6 @@ type SearchResultType = {
   isDBSearch: boolean
 }
 
-type SiteNameType = 'goat' | 'stockx' | 'dewu' | 'db' | 'trending_dewu' | 'trending_goat'
-
-type UserInfoType = {
-  username: string
-  password: string
-  following: string[]
-  meta: { createdAt: number; updatedAt: number }
-}
-
-type routerMap = {
-  path: string
-  method: string
-  target: ClassDecorator
-  callback: Middleware[]
-}
-
 export {
   DewuPriceType,
   StockxPriceType,
@@ -759,13 +743,10 @@ export {
   StockxSearchDetailType,
   StockxSearchSuggestionType,
   SearchDetailType,
-  routerMap,
   DewuSkusType,
   DewuInfoType,
   DewuSizePriceListType,
   SearchResultType,
-  SiteNameType,
   SearchDetailListType,
-  UserInfoType,
   ExchangeRateType,
 }

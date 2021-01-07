@@ -1,11 +1,10 @@
 import * as mongoose from 'mongoose'
 import * as bcrypt from 'bcrypt'
-import { UserInfoType } from '../../utils/type'
 import config from '../../config'
 
 const { Schema } = mongoose
 
-const UserSchema = new Schema({
+const UserSchema = new Schema<UserInfoSchemaType>({
   __v: { type: Number, select: false },
   username: {
     unique: true,
@@ -69,6 +68,12 @@ UserSchema.methods = {
   },
 }
 
+type UserInfoType = {
+  username: string
+  password: string
+  following: string[]
+  meta: { createdAt: number; updatedAt: number }
+}
 interface UserInfoSchemaType extends UserInfoType, mongoose.Document {
   comparePassword: (_password: string, password: string) => Promise<boolean>
 }

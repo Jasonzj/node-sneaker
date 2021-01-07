@@ -15,10 +15,11 @@ import {
 import {
   SearchDetailListType,
   SearchResultType,
-  SiteNameType,
   DewuSearchSuggestionType,
   StockxHitsType,
-} from '../utils/type'
+} from '../types/global'
+
+type SiteNameType = 'goat' | 'stockx' | 'dewu' | 'db' | 'trending_dewu' | 'trending_goat'
 
 // 站点搜索接口map
 const searchInterfaceMap = {

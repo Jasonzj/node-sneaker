@@ -12,7 +12,7 @@ import {
   GoatPricesType,
   StockxPriceType,
   DewuSearchDetailType,
-} from '../utils/type'
+} from '../types/global'
 
 /**
  * 获取Stockx指定urlKey的鞋的所有尺码价格列表

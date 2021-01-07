@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose'
-import { SearchDetailType } from '../../utils/type'
+import { SearchDetailType } from '../../types/global'
 
 const { Schema } = mongoose
 
