@@ -1,5 +1,5 @@
 import Sneaker from './models/sneaker'
-import { SearchDetailType, SearchDetailListType, SearchResultType } from '../utils/type'
+import { SearchDetailType, SearchDetailListType, SearchResultType } from '../types/global'
 
 /**
  * mongoose查询数据-根据keyWord匹配查找

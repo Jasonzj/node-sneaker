@@ -7,7 +7,7 @@ import {
   StockxSearchDetailType,
   StockxSearchSuggestionType,
   StockxHitsType,
-} from '../utils/type'
+} from '../types/global'
 
 /**
  * Stockx-API根据关键字获取搜索关联详情(频繁)

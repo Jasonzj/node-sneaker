@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios'
 import proxy_axios from './proxy_axios'
 import sign from './sign'
-import { ExchangeRateType } from './type'
+import { ExchangeRateType } from '../types/global'
 
 /**
  *  错误log

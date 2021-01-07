@@ -9,7 +9,7 @@ import {
   GoatSearchDetailType,
   DewuSearchDetailType,
   StockxSearchDetailType,
-} from '../utils/type'
+} from '../types/global'
 
 const goatDetailHandle = async (
   shoe: SearchDetailType,

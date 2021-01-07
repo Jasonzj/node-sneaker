@@ -3,8 +3,14 @@ import * as glob from 'glob'
 import * as Koa from 'koa'
 import * as jwtKoa from 'koa-jwt'
 import { resolve } from 'path'
-import { routerMap } from '../utils/type'
 import config from '../config'
+
+type routerMap = {
+  path: string
+  method: string
+  target: ClassDecorator
+  callback: Koa.Middleware[]
+}
 
 const pathPrefix = Symbol('prefix') // 路径前缀
 const routerMap: routerMap[] = []

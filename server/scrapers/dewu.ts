@@ -9,7 +9,7 @@ import {
   DewuInfoType,
   DewuPriceType,
   DewuSearchSuggestionType,
-} from '../utils/type'
+} from '../types/global'
 
 /**
  * Dewu-API根据关键字搜索产品信息

@@ -2,7 +2,7 @@ import config from '../config'
 import proxy_axios from '../utils/proxy_axios'
 import { errorLog } from '../utils/common'
 import { goatHeader } from '../utils/reqHeader'
-import { GoatPricesType, GoatSearchDetailType } from '../utils/type'
+import { GoatPricesType, GoatSearchDetailType } from '../types/global'
 
 /**
  * API根据关键字搜索产品，获得产品link和lowestPrices
