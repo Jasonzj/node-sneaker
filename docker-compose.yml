@@ -6,8 +6,6 @@ services:
     restart: always
     volumes:
       - ~/data/db:/data/db
-    networks:
-      - sneaker-network
 
   web:
     image: jasonzza/node-sneaker
@@ -20,9 +18,3 @@ services:
       - database
     ports:
       - 4455:4455
-    networks:
-      - sneaker-network
-
-networks:
-  sneaker-network:
-    driver: bridge
