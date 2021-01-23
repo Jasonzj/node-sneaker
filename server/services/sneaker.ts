@@ -3,7 +3,7 @@ import { stockx_getSuggestion, stockx_searchProduct } from '../scrapers/stock'
 import { goat_getTrendingProduct, goat_searchProduct } from '../scrapers/goat'
 import { dewu_getSuggestion, dewu_getTrendingProduct, dewu_searchProduct } from '../scrapers/dewu'
 import { isEmptyObject } from '../utils/common'
-import { dbSearch, getSearchtDetailDb, SneakerUpdate, dbSearchByStyleId } from '../Dao/sneaker'
+import { dbSearch, getSearchDetailDb, SneakerUpdate, dbSearchByStyleId } from '../Dao/sneaker'
 import {
   getGoatPrices,
   getDewuPrices,
@@ -26,7 +26,7 @@ const searchInterfaceMap = {
   stockx: stockx_searchProduct,
   goat: goat_searchProduct,
   dewu: dewu_searchProduct,
-  db: getSearchtDetailDb,
+  db: getSearchDetailDb,
   trending_goat: goat_getTrendingProduct,
   trending_dewu: dewu_getTrendingProduct,
 }
@@ -45,7 +45,7 @@ const suggestionInterfaceMap = {
   stockx: stockx_getSuggestion,
 }
 
-const searhInterfaceArr = Object.keys(searchInterfaceMap)
+const searchInterfaceArr = Object.keys(searchInterfaceMap)
 const suggestionInterfaceArr = Object.keys(suggestionInterfaceMap)
 
 /**
@@ -56,11 +56,11 @@ const suggestionInterfaceArr = Object.keys(suggestionInterfaceMap)
  * @param {string} siteName 接口站点名字
  * @returns {Promise<SearchDetailListType>}
  */
-export const getSearchtDetail = async (
+export const getSearchDetail = async (
   keyWord: string,
   siteName: SiteNameType,
 ): Promise<SearchResultType> => {
-  if (!searhInterfaceArr.includes(siteName)) throw new Error('search interface sitename error')
+  if (!searchInterfaceArr.includes(siteName)) throw new Error('search interface sitename error')
 
   let isDBSearch = false
   const result = await searchInterfaceMap[siteName](keyWord)

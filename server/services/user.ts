@@ -14,11 +14,11 @@ export const login = async (ctx: Context) => {
   const { username, password } = ctx.request.body
   const user = await User.findOne({ username }).select('password')
 
-  if (!user) ctx.throw(401, 'username or passwoad is wrong')
+  if (!user) ctx.throw(401, 'username or password is wrong')
 
   const match = await user.comparePassword(password, user.password)
 
-  if (!match) ctx.throw(401, 'username or passwoad is wrong')
+  if (!match) ctx.throw(401, 'username or password is wrong')
 
   const token = jsonwebtoken.sign({ username, id: user._id }, config.JWT_SECRET, {
     expiresIn: '7d',

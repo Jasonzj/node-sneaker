@@ -41,7 +41,7 @@ export const dbSearchByStyleId = async (styleId: string): Promise<SearchDetailTy
  * @param {string} keyWord 搜索关键字
  * @returns {Promise<SearchResultType>}
  */
-export const getSearchtDetailDb = async (keyWord: string): Promise<SearchResultType> => {
+export const getSearchDetailDb = async (keyWord: string): Promise<SearchResultType> => {
   const searchResult = await dbSearch(keyWord)
   return {
     result: searchResult.filter((item) => item.styleID),
