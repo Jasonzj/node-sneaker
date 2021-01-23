@@ -4,7 +4,7 @@ import config from '../config'
 import {
   getProductPrice,
   getSomeProduct,
-  getSearchtDetail,
+  getSearchDetail,
   getSuggestion,
 } from '../services/sneaker'
 
@@ -40,7 +40,7 @@ export class SneaksRouter {
   @Auth
   async getSearchProduct(ctx: Context): Promise<void> {
     const { keyWord, siteName } = ctx.params
-    const { result, isDBSearch } = await getSearchtDetail(keyWord, siteName)
+    const { result, isDBSearch } = await getSearchDetail(keyWord, siteName)
     const success = Boolean(result.length)
 
     ctx.body = {
@@ -57,7 +57,7 @@ export class SneaksRouter {
   @Auth
   async getTrendingGoat(ctx: Context): Promise<void> {
     const { siteName } = ctx.params
-    const { result, isDBSearch } = await getSearchtDetail('', siteName)
+    const { result, isDBSearch } = await getSearchDetail('', siteName)
     const success = Boolean(result.length)
 
     ctx.body = {
