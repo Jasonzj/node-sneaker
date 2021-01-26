@@ -2,7 +2,7 @@
 
 一个基于 Koa2, Typescript 构建的球鞋比价网 API service
 
-[![Build Status](https://travis-ci.com/Jasonzj/node-sneaker.svg?branch=main)](https://travis-ci.com/Jasonzj/node-sneaker)
+![Build & Deploy](https://github.com/Jasonzj/node-sneaker/workflows/Build%20&%20Deploy/badge.svg)
 [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Jasonzj/node-sneaker/blob/main/LICENSE)
 ## API
 
