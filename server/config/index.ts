@@ -4,8 +4,8 @@ import * as dotenv from 'dotenv'
 import { join } from 'path'
 
 // 环境变量注入
-const result = dotenv.config({ path: join(__dirname, '../../variables.env') })
-console.log(`${result.error ? 'env loaded fail or empty' : 'env loaded success'}`)
+const { error, parsed } = dotenv.config({ path: join(__dirname, '../../variables.env') })
+console.log(`${error ? 'env loaded fail or empty' : 'env loaded success'}`)
 
 const isProd = process.env.NODE_ENV === 'production'
 const env = isProd ? production : development
@@ -14,8 +14,8 @@ Object.keys(env).forEach((key) => {
   env[key] = process.env[key] || env[key]
 })
 
-Object.keys(process.env).forEach((key) => {
-  env[key] = process.env[key]
+Object.keys(parsed || {}).forEach((key) => {
+  env[key] = parsed[key]
 })
 
 const Environment: config = env
@@ -25,11 +25,12 @@ export default Environment
 type config = {
   PORT: number
   API_PREFIX: string
-  SEARCH_PAGE_LIMIT: number
+  SEARCH_LIMIT: number
   CONCURRENT_LIMIT: number
-  DEWU_PAGE_LIMIT: number
+  DEWU_LIMIT: number
   DEWU_CONCURRENT_LIMIT: number
   REQUIRE_TIMEOUT: number
+  PROXY_HOST?: string
   PROXY_PORT?: number
   MONGODB_LINK?: string
   JWT_SECRET?: string

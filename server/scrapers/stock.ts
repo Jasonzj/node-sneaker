@@ -20,7 +20,7 @@ export const stockx_getSuggestion = async (key: string): Promise<StockxHitsType>
     const response = await proxy_axios.post<StockxSearchSuggestionType>(
       'https://xw7sbct9v6-1.algolianet.com/1/indexes/products/query?x-algolia-agent=Algolia%20for%20vanilla%20JavaScript%203.32.1&x-algolia-application-id=XW7SBCT9V6&x-algolia-api-key=6bfb5abee4dcd8cea8f0ca1ca085c2b3',
       {
-        params: `query=${key}&facets=*&filters=&hitsPerPage=${config.SEARCH_PAGE_LIMIT}`,
+        params: `query=${key}&facets=*&filters=&hitsPerPage=${config.SEARCH_LIMIT}`,
       },
       {
         headers: stockxHeader,
@@ -80,7 +80,7 @@ export const stockx_searchProduct = async (key: string): Promise<StockxSearchDet
     if (Products) {
       return {
         ...response.data,
-        Products: Products.slice(0, config.SEARCH_PAGE_LIMIT),
+        Products: Products.slice(0, config.SEARCH_LIMIT),
       }
     }
 

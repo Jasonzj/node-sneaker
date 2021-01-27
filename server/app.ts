@@ -25,6 +25,6 @@ router(app)
 
 const server = app.listen(config.PORT, () => {
   console.log(`server start --> ${config.PORT}`)
-  if (config.PROXY_PORT) console.log(`proxy start --> ${config.PROXY_PORT}`)
+  if (config.PROXY_PORT) console.log(`proxy start --> ${config.PROXY_HOST}:${config.PROXY_PORT}`)
 })
 server.setTimeout(config.REQUIRE_TIMEOUT * 1000)

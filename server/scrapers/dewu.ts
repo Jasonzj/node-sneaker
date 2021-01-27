@@ -21,7 +21,7 @@ export const dewu_searchProduct = async (key: string): Promise<DewuSearchDetailT
   const queryStr = getDewuQueryStr({
     title: key || 'aj',
     page: 0,
-    limit: config.DEWU_PAGE_LIMIT,
+    limit: config.DEWU_LIMIT,
     showHot: -1,
     sortType: 1,
     sortMode: 1,
