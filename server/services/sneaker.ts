@@ -69,8 +69,7 @@ export const getSearchDetail = async (
   if (siteName === 'db') return result as SearchResultType
 
   if (result) {
-    // @ts-ignore
-    searchResult = await searchDataHandleMap[siteName](result) //搜索信息整合
+    searchResult = await (searchDataHandleMap as unknown)[siteName](result) //搜索信息整合
     searchResult.forEach((shoe) => {
       const styleID = shoe.styleID
       SneakerUpdate(styleID, shoe)
